@@ -53,13 +53,18 @@
       text-decoration: underline;
     }
 
-    .hero {
-      background-image: url('images/banner.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 5rem 2rem;
-      text-align: center;
-      color: #3b2210;
+   .hero {
+  background-image: url('images/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 400px; /* adjust if needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #3b2210;
+}
+    
     }
 
     .section {
@@ -177,11 +182,10 @@
   </header>
 
   <section class="hero" id="home">
-  </section>
-
-  <section class="section">
+  <div class="hero-content">
     <h1>Pure Wellness. Rooted in Nature.</h1>
-  </section>
+  </div>
+</section>
 
   <section class="section" id="products">
     <h2>Our Products</h2>
