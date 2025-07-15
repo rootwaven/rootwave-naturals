@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RootWave Naturals</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="icon" href="images/logo.jpg" type="image/jpg">
   <style>
     body {
       margin: 0;
@@ -53,18 +53,12 @@
       text-decoration: underline;
     }
 
-   .hero {
-  background-image: url('images/banner.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 400px; /* adjust if needed */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #3b2210;
-}
-    
+    .hero {
+      background-image: url('images/banner.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      text-align: center;
     }
 
     .section {
@@ -95,6 +89,20 @@
     .product-card img {
       width: 100%;
       height: auto;
+    }
+
+    .product-card button {
+      margin-top: 0.5rem;
+      background-color: #3b6e47;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product-card button:hover {
+      background-color: #2e4a30;
     }
 
     footer {
@@ -146,10 +154,6 @@
       text-align: center;
     }
 
-    .instagram-section h2 {
-      margin-bottom: 1rem;
-    }
-
     .instagram-gallery {
       display: flex;
       justify-content: center;
@@ -164,6 +168,11 @@
       border-radius: 10px;
     }
   </style>
+  <script>
+    function addToCart(product) {
+      alert(product + " added to cart!");
+    }
+  </script>
 </head>
 
 <body>
@@ -181,11 +190,11 @@
     </nav>
   </header>
 
-  <section class="hero" id="home">
-  <div class="hero-content">
+  <section class="hero" id="home"></section>
+
+  <section class="section">
     <h1>Pure Wellness. Rooted in Nature.</h1>
-  </div>
-</section>
+  </section>
 
   <section class="section" id="products">
     <h2>Our Products</h2>
@@ -194,16 +203,19 @@
         <img src="images/powercharge-gel.jpg" alt="PowerCharge Gel">
         <h3>PowerCharge Gel</h3>
         <p>A natural pre-workout gel with beets, turmeric & Himalayan salt.</p>
+        <button onclick="addToCart('PowerCharge Gel')">Add to Cart</button>
       </div>
       <div class="product-card">
         <img src="images/chia-active.jpg" alt="Chia Active">
         <h3>Chia Active</h3>
         <p>Hydrating and muscle-repairing drink with chia, gond katira & lemon.</p>
+        <button onclick="addToCart('Chia Active')">Add to Cart</button>
       </div>
       <div class="product-card">
         <img src="images/omega-bar.jpg" alt="Omega Bar">
         <h3>Omega Bar</h3>
         <p>Protein bar packed with omega-3s and plant-based nutrients.</p>
+        <button onclick="addToCart('Omega Bar')">Add to Cart</button>
       </div>
     </div>
   </section>
