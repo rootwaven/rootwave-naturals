@@ -1,46 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>RootWave Naturals</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RootWave Naturals</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #2e4a30;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-container img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .logo-container span {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background-image: url('images/hero-banner.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 5rem 2rem;
+      text-align: center;
+      color: #3b2210;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      width: 250px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    footer {
+      background-color: #2e4a30;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .about,
+    .contact {
+      background: white;
+      margin: 2rem auto;
+      max-width: 800px;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .contact button {
+      background-color: #3b6e47;
+      color: white;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact button:hover {
+      background-color: #2e4a30;
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <img src="images/logo.jpg" alt="RootWave Naturals Logo" class="logo">
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Products</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
-    <main>
-        <img src="images/banner.jpg" alt="Banner" class="banner">
-        <section class="intro">
-            <h1>Welcome to RootWave Naturals</h1>
-            <p>Empowering your wellness through nature's finest remedies.</p>
-        </section>
-        <section class="products">
-            <h2>Our Products</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="images/powercharge-gel.jpg" alt="PowerCharge Gel">
-                    <h3>PowerCharge Gel</h3>
-                </div>
-                <div class="product-card">
-                    <img src="images/chia-active.jpg" alt="Chia Active">
-                    <h3>Chia Active</h3>
-                </div>
-                <div class="product-card">
-                    <img src="images/omega-bar.jpg" alt="Omega Bar">
-                    <h3>Omega Bar</h3>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>© 2025 RootWave Naturals. All rights reserved.</p>
-    </footer>
+  <header>
+    <div class="logo-container">
+      <img src="images/logo.png" alt="RootWave Naturals Logo">
+      <span>RootWave Naturals</span>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>Pure Wellness. Rooted in Nature.</h1>
+  </section>
+
+  <section class="section" id="products">
+    <h2>Our Products</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="images/product1.png" alt="PowerCharge Gel">
+        <h3>PowerCharge Gel</h3>
+        <p>A natural pre-workout gel with beets, turmeric & Himalayan salt.</p>
+      </div>
+      <div class="product-card">
+        <img src="images/product2.png" alt="Chia Active">
+        <h3>Chia Active</h3>
+        <p>Hydrating and muscle-repairing drink with chia, gond katira & lemon.</p>
+      </div>
+      <div class="product-card">
+        <img src="images/product3.png" alt="Omega Bar">
+        <h3>Omega Bar</h3>
+        <p>Protein bar packed with omega-3s and plant-based nutrients.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2>About Us</h2>
+    <p>RootWave Naturals is dedicated to reviving age-old wellness practices using the purity of nature. Every product is handmade, preservative-free, and carefully crafted to support your health journey naturally.</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 RootWave Naturals. All rights reserved.
+  </footer>
 </body>
+
 </html>
