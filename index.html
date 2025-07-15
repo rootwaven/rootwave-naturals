@@ -139,6 +139,30 @@
     .contact button:hover {
       background-color: #2e4a30;
     }
+
+    .instagram-section {
+      padding: 3rem 2rem;
+      background-color: white;
+      text-align: center;
+    }
+
+    .instagram-section h2 {
+      margin-bottom: 1rem;
+    }
+
+    .instagram-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .instagram-gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
   </style>
 </head>
 
@@ -153,6 +177,7 @@
       <a href="#products">Products</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
+      <a href="#login">Login / Sign In</a>
     </nav>
   </header>
 
@@ -162,23 +187,32 @@
 
   <section class="section" id="products">
     <h2>Our Products</h2>
-   <div class="products">
-  <div class="product-card">
-    <img src="images/powercharge-gel.jpg" alt="PowerCharge Gel">
-    <h3>PowerCharge Gel</h3>
-    <p>A natural pre-workout gel with beets, turmeric & Himalayan salt.</p>
-  </div>
-  <div class="product-card">
-    <img src="images/chia-active.jpg" alt="Chia Active">
-    <h3>Chia Active</h3>
-    <p>Hydrating and muscle-repairing drink with chia, gond katira & lemon.</p>
-  </div>
-  <div class="product-card">
-    <img src="images/omega-bar.jpg" alt="Omega Bar">
-    <h3>Omega Bar</h3>
-    <p>Protein bar packed with omega-3s and plant-based nutrients.</p>
-  </div>
-</div>
+    <div class="products">
+      <div class="product-card">
+        <img src="images/powercharge-gel.jpg" alt="PowerCharge Gel">
+        <h3>PowerCharge Gel</h3>
+        <p>A natural pre-workout gel with beets, turmeric & Himalayan salt.</p>
+      </div>
+      <div class="product-card">
+        <img src="images/chia-active.jpg" alt="Chia Active">
+        <h3>Chia Active</h3>
+        <p>Hydrating and muscle-repairing drink with chia, gond katira & lemon.</p>
+      </div>
+      <div class="product-card">
+        <img src="images/omega-bar.jpg" alt="Omega Bar">
+        <h3>Omega Bar</h3>
+        <p>Protein bar packed with omega-3s and plant-based nutrients.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="instagram-section">
+    <h2>Follow Us @rootwavenaturals</h2>
+    <div class="instagram-gallery">
+      <img src="images/insta1.jpg" alt="Instagram post 1">
+      <img src="images/insta2.jpg" alt="Instagram post 2">
+      <img src="images/insta3.jpg" alt="Instagram post 3">
+    </div>
   </section>
 
   <section class="about" id="about">
