@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="images/logo.jpg" type="image/jpg">
   <style>
-    /* styles unchanged */
-    /* Login Modal */
     .modal {
       display: none;
       position: fixed;
@@ -19,193 +17,89 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0, 0, 0, 0.6);
     }
 
     .modal-content {
-      background-color: white;
+      background-color: #fff;
       margin: 10% auto;
       padding: 2rem;
-      border: 1px solid #888;
-      width: 300px;
-      border-radius: 10px;
-      text-align: center;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
     }
 
-    .modal-content input {
-      width: 100%;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+    .modal-content h2 {
+      margin-top: 0;
     }
 
-    .modal-content button {
-      padding: 0.5rem 1rem;
-      background-color: #3b6e47;
-      color: white;
-      border: none;
-      border-radius: 5px;
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
       cursor: pointer;
+      color: #888;
     }
 
-    .modal-content button:hover {
-      background-color: #2e4a30;
-    }
-
-    .success-message {
-      color: green;
-      margin-top: 10px;
-      font-weight: bold;
+    .close:hover {
+      color: #000;
     }
   </style>
-  <script>
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    function addToCart(product) {
-      cart.push(product);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      alert(product + " added to cart!");
-      updateCartView();
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      updateCartView();
-    }
-
-    function updateCartView() {
-      const cartContainer = document.getElementById("cart-items");
-      if (!cartContainer) return;
-      cartContainer.innerHTML = "";
-      cart.forEach((item, index) => {
-        cartContainer.innerHTML += `<div class='cart-item'>${item} <button onclick='removeFromCart(${index})'>Remove</button></div>`;
-      });
-    }
-
-    function placeOrder() {
-      document.getElementById("payment-section").style.display = "block";
-    }
-
-    function simulatePayment() {
-      alert("Payment successful! Your order is confirmed.");
-      cart = [];
-      localStorage.removeItem("cart");
-      updateCartView();
-      document.getElementById("payment-section").innerHTML = "<div class='success-message'>Thank you! Your payment was successful.</div>";
-    }
-
-    function openLoginModal() {
-      document.getElementById("loginModal").style.display = "block";
-    }
-
-    function closeLoginModal() {
-      document.getElementById("loginModal").style.display = "none";
-    }
-
-    function loginUser() {
-      const username = document.getElementById("username").value;
-      if (username.trim()) {
-        localStorage.setItem("user", username);
-        closeLoginModal();
-        updateLoginStatus();
-      }
-    }
-
-    function logoutUser() {
-      localStorage.removeItem("user");
-      updateLoginStatus();
-    }
-
-    function updateLoginStatus() {
-      const user = localStorage.getItem("user");
-      const loginLink = document.getElementById("login-link");
-      const logoutLink = document.getElementById("logout-link");
-      if (user) {
-        loginLink.style.display = "none";
-        logoutLink.style.display = "inline";
-      } else {
-        loginLink.style.display = "inline";
-        logoutLink.style.display = "none";
-      }
-    }
-  </script>
 </head>
 
-<body onload="updateCartView(); updateLoginStatus();">
+<body>
   <header>
     <div class="logo-container">
-      <img src="images/logo.jpg" alt="RootWave Naturals Logo">
-      <span>RootWave Naturals</span>
+      <img src="images/logo.jpg" alt="RootWave Logo">
+      <h1>RootWave Naturals</h1>
     </div>
     <nav>
       <a href="#home">Home</a>
       <a href="#products">Products</a>
-      <a href="#cart">Cart</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="#" onclick="openLoginModal()" id="login-link">Login / Sign In</a>
-      <a href="#" onclick="logoutUser()" id="logout-link" style="display:none;">Logout</a>
+      <a href="#" id="create-account-btn">Create Account</a>
+      <a href="#" id="login-btn">Login</a>
+      <a href="#" id="logout-btn" style="display:none;">Logout</a>
     </nav>
   </header>
 
- <section class="hero" id="home" style="background: url('images/banner.jpg') no-repeat center center/cover; height: 500px; display: flex; align-items: center; justify-content: center;">
-  <div class="hero-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-    <h1 style="color: white; font-size: 2.5rem;">Welcome to RootWave Naturals</h1>
-  </div>
-</section>
-
-
-  <section class="section">
-    <h1>Pure Wellness. Rooted in Nature.</h1>
+  <section class="hero" id="home">
+    <img src="images/banner.jpg" alt="RootWave Naturals Banner">
+    <div class="hero-content">
+      <h1>Welcome to RootWave Naturals</h1>
+    </div>
   </section>
 
   <section class="section" id="products">
-    <h2>Our Products</h2>
+    <h2>Our Featured Products</h2>
     <div class="products">
       <div class="product-card">
         <img src="images/powercharge-gel.jpg" alt="PowerCharge Gel">
         <h3>PowerCharge Gel</h3>
-        <p>A natural pre-workout gel with beets, turmeric & Himalayan salt.</p>
-        <button onclick="addToCart('PowerCharge Gel')">Add to Cart</button>
+        <p>Boost your energy naturally with our PowerCharge herbal formula.</p>
+        <button>Add to Cart</button>
       </div>
       <div class="product-card">
         <img src="images/chia-active.jpg" alt="Chia Active">
         <h3>Chia Active</h3>
-        <p>Hydrating and muscle-repairing drink with chia, gond katira & lemon.</p>
-        <button onclick="addToCart('Chia Active')">Add to Cart</button>
+        <p>Rich in Omega-3 and fiber, perfect for a healthy lifestyle.</p>
+        <button>Add to Cart</button>
       </div>
       <div class="product-card">
         <img src="images/omega-bar.jpg" alt="Omega Bar">
         <h3>Omega Bar</h3>
-        <p>Protein bar packed with omega-3s and plant-based nutrients.</p>
-        <button onclick="addToCart('Omega Bar')">Add to Cart</button>
+        <p>A delicious snack packed with nutrients and plant-based proteins.</p>
+        <button>Add to Cart</button>
       </div>
     </div>
   </section>
 
-  <section class="section" id="cart">
-    <h2>Your Cart</h2>
-    <div id="cart-items"></div>
-    <button onclick="placeOrder()">Place Order</button>
-    <div id="payment-section" style="display:none; margin-top: 1rem;">
-      <button onclick="simulatePayment()">Proceed to Payment</button>
-    </div>
-  </section>
-
-  <section class="instagram-section">
-    <h2>Follow Us @rootwavenaturals</h2>
-    <div class="instagram-gallery">
-      <img src="images/insta1.jpg" alt="Instagram post 1">
-      <img src="images/insta2.jpg" alt="Instagram post 2">
-      <img src="images/insta3.jpg" alt="Instagram post 3">
-    </div>
-  </section>
-
   <section class="about" id="about">
-    <h2>About Us</h2>
-    <p>RootWave Naturals is dedicated to reviving age-old wellness practices using the purity of nature. Every product is handmade, preservative-free, and carefully crafted to support your health journey naturally.</p>
+    <h2>About RootWave Naturals</h2>
+    <p>We believe in nature’s power to heal. RootWave Naturals delivers 100% herbal products for wellness and vitality.</p>
   </section>
 
   <section class="contact" id="contact">
@@ -213,25 +107,95 @@
     <form>
       <input type="text" placeholder="Your Name" required>
       <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="4" required></textarea>
+      <textarea rows="5" placeholder="Your Message"></textarea>
       <button type="submit">Send Message</button>
     </form>
   </section>
 
   <footer>
-    &copy; 2025 RootWave Naturals. All rights reserved.
+    <p>&copy; 2025 RootWave Naturals. All rights reserved. | Follow us @rootwavenaturals</p>
   </footer>
 
   <!-- Login Modal -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
-      <h2>Login / Sign In</h2>
-      <input type="text" id="username" placeholder="Enter your name" required>
+      <span class="close" id="closeLoginModal">&times;</span>
+      <h2>Login to RootWave</h2>
+      <input type="text" id="username" placeholder="Enter your username" required>
+      <input type="password" id="password" placeholder="Enter your password" required>
       <button onclick="loginUser()">Login</button>
-      <br><br>
-      <button onclick="closeLoginModal()">Cancel</button>
     </div>
   </div>
+
+  <!-- Create Account Modal -->
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeRegisterModal">&times;</span>
+      <h2>Create an Account</h2>
+      <input type="text" id="reg-name" placeholder="Full Name" required>
+      <input type="email" id="reg-email" placeholder="Email Address" required>
+      <input type="text" id="reg-username" placeholder="Username" required>
+      <input type="password" id="reg-password" placeholder="Password" required>
+      <button onclick="registerUser()">Register</button>
+    </div>
+  </div>
+
+  <script>
+    const loginBtn = document.getElementById("login-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+    const createAccountBtn = document.getElementById("create-account-btn");
+    const loginModal = document.getElementById("loginModal");
+    const registerModal = document.getElementById("registerModal");
+    const closeLoginModal = document.getElementById("closeLoginModal");
+    const closeRegisterModal = document.getElementById("closeRegisterModal");
+
+    loginBtn.onclick = () => loginModal.style.display = "block";
+    createAccountBtn.onclick = () => registerModal.style.display = "block";
+    closeLoginModal.onclick = () => loginModal.style.display = "none";
+    closeRegisterModal.onclick = () => registerModal.style.display = "none";
+
+    window.onclick = (e) => {
+      if (e.target == loginModal) loginModal.style.display = "none";
+      if (e.target == registerModal) registerModal.style.display = "none";
+    };
+
+    function loginUser() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      if (username && password) {
+        alert("Welcome, " + username + "!");
+        loginBtn.style.display = "none";
+        createAccountBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+        loginModal.style.display = "none";
+      } else {
+        alert("Please enter both username and password.");
+      }
+    }
+
+    function registerUser() {
+      const name = document.getElementById("reg-name").value;
+      const email = document.getElementById("reg-email").value;
+      const username = document.getElementById("reg-username").value;
+      const password = document.getElementById("reg-password").value;
+      if (name && email && username && password) {
+        alert("Account created for " + name + "!");
+        registerModal.style.display = "none";
+        loginBtn.style.display = "none";
+        createAccountBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+      } else {
+        alert("Please fill in all fields.");
+      }
+    }
+
+    logoutBtn.onclick = () => {
+      alert("Logged out successfully.");
+      loginBtn.style.display = "inline-block";
+      createAccountBtn.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+    };
+  </script>
 </body>
 
 </html>
