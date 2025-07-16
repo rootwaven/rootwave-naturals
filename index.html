@@ -8,174 +8,132 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="images/logo.jpg" type="image/jpg">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    header {
-      background-color: #2e4a30;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .logo-container img {
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .logo-container span {
-      font-size: 1.25rem;
-      font-weight: bold;
-    }
-
-    nav a {
-      margin-left: 1.5rem;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .hero {
-      background-image: url('images/banner.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 450px;
-      text-align: center;
-    }
-
-    .section {
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .product-card {
-      background: white;
-      border-radius: 10px;
-      padding: 1rem;
-      width: 250px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
-    }
-
-    .product-card img {
+    /* styles unchanged */
+    /* Login Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
     }
 
-    .product-card button {
-      margin-top: 0.5rem;
-      background-color: #3b6e47;
-      color: white;
-      border: none;
-      padding: 0.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .product-card button:hover {
-      background-color: #2e4a30;
-    }
-
-    footer {
-      background-color: #2e4a30;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .about,
-    .contact {
-      background: white;
-      margin: 2rem auto;
-      max-width: 800px;
-      border-radius: 10px;
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
       padding: 2rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid #888;
+      width: 300px;
+      border-radius: 10px;
+      text-align: center;
     }
 
-    .contact form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .contact input,
-    .contact textarea {
+    .modal-content input {
+      width: 100%;
       padding: 0.5rem;
       margin: 0.5rem 0;
-      border: 1px solid #ccc;
       border-radius: 5px;
+      border: 1px solid #ccc;
     }
 
-    .contact button {
+    .modal-content button {
+      padding: 0.5rem 1rem;
       background-color: #3b6e47;
       color: white;
-      padding: 0.7rem;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
 
-    .contact button:hover {
+    .modal-content button:hover {
       background-color: #2e4a30;
     }
 
-    .instagram-section {
-      padding: 3rem 2rem;
-      background-color: white;
-      text-align: center;
-    }
-
-    .instagram-gallery {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .instagram-gallery img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
+    .success-message {
+      color: green;
+      margin-top: 10px;
+      font-weight: bold;
     }
   </style>
   <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
     function addToCart(product) {
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
       alert(product + " added to cart!");
+      updateCartView();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartView();
+    }
+
+    function updateCartView() {
+      const cartContainer = document.getElementById("cart-items");
+      if (!cartContainer) return;
+      cartContainer.innerHTML = "";
+      cart.forEach((item, index) => {
+        cartContainer.innerHTML += `<div class='cart-item'>${item} <button onclick='removeFromCart(${index})'>Remove</button></div>`;
+      });
+    }
+
+    function placeOrder() {
+      document.getElementById("payment-section").style.display = "block";
+    }
+
+    function simulatePayment() {
+      alert("Payment successful! Your order is confirmed.");
+      cart = [];
+      localStorage.removeItem("cart");
+      updateCartView();
+      document.getElementById("payment-section").innerHTML = "<div class='success-message'>Thank you! Your payment was successful.</div>";
+    }
+
+    function openLoginModal() {
+      document.getElementById("loginModal").style.display = "block";
+    }
+
+    function closeLoginModal() {
+      document.getElementById("loginModal").style.display = "none";
+    }
+
+    function loginUser() {
+      const username = document.getElementById("username").value;
+      if (username.trim()) {
+        localStorage.setItem("user", username);
+        closeLoginModal();
+        updateLoginStatus();
+      }
+    }
+
+    function logoutUser() {
+      localStorage.removeItem("user");
+      updateLoginStatus();
+    }
+
+    function updateLoginStatus() {
+      const user = localStorage.getItem("user");
+      const loginLink = document.getElementById("login-link");
+      const logoutLink = document.getElementById("logout-link");
+      if (user) {
+        loginLink.style.display = "none";
+        logoutLink.style.display = "inline";
+      } else {
+        loginLink.style.display = "inline";
+        logoutLink.style.display = "none";
+      }
     }
   </script>
 </head>
 
-<body>
+<body onload="updateCartView(); updateLoginStatus();">
   <header>
     <div class="logo-container">
       <img src="images/logo.jpg" alt="RootWave Naturals Logo">
@@ -184,13 +142,20 @@
     <nav>
       <a href="#home">Home</a>
       <a href="#products">Products</a>
+      <a href="#cart">Cart</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="#login">Login / Sign In</a>
+      <a href="#" onclick="openLoginModal()" id="login-link">Login / Sign In</a>
+      <a href="#" onclick="logoutUser()" id="logout-link" style="display:none;">Logout</a>
     </nav>
   </header>
 
-  <section class="hero" id="home"></section>
+ <section class="hero" id="home" style="background: url('images/banner.jpg') no-repeat center center/cover; height: 500px; display: flex; align-items: center; justify-content: center;">
+  <div class="hero-content" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+    <h1 style="color: white; font-size: 2.5rem;">Welcome to RootWave Naturals</h1>
+  </div>
+</section>
+
 
   <section class="section">
     <h1>Pure Wellness. Rooted in Nature.</h1>
@@ -217,6 +182,15 @@
         <p>Protein bar packed with omega-3s and plant-based nutrients.</p>
         <button onclick="addToCart('Omega Bar')">Add to Cart</button>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <button onclick="placeOrder()">Place Order</button>
+    <div id="payment-section" style="display:none; margin-top: 1rem;">
+      <button onclick="simulatePayment()">Proceed to Payment</button>
     </div>
   </section>
 
@@ -247,6 +221,17 @@
   <footer>
     &copy; 2025 RootWave Naturals. All rights reserved.
   </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2>Login / Sign In</h2>
+      <input type="text" id="username" placeholder="Enter your name" required>
+      <button onclick="loginUser()">Login</button>
+      <br><br>
+      <button onclick="closeLoginModal()">Cancel</button>
+    </div>
+  </div>
 </body>
 
 </html>
